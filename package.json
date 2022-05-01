@@ -1,0 +1,27 @@
+{
+  "name": "babel-plugin-export-window-declarations",
+  "version": "0.1.0",
+  "description": "export variables defined as window object.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benibana2001/babel-plugin-export-window-declarations.git"
+  },
+  "keywords": [
+    "babel-plugin"
+  ],
+  "author": "benibana2001",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benibana2001/babel-plugin-export-window-declarations/issues"
+  },
+  "homepage": "https://github.com/benibana2001/babel-plugin-export-window-declarations#readme",
+  "devDependencies": {
+    "babel-jest": "^28.0.3",
+    "babel-plugin-tester": "^10.1.0",
+    "jest": "^28.0.3"
+  }
+}
