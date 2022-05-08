@@ -22,3 +22,7 @@ d.prototype = {
     console.log(this._name);
   },
 };
+
+(function () {
+  console.log("iife");
+})();

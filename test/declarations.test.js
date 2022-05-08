@@ -24,7 +24,13 @@ var d4 = function () {
   console.log(d44);
 };
 
-export { d1, d2, d3, d4 };`;
+var d5,
+  d6,
+  d7 = 1;
+
+var d8 = () => console.log("d8");
+
+export { d1, d2, d3, d4, d5, d6, d7, d8 };`;
 
 pluginTester({
 //   formatResult: (r) => r,

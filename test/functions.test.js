@@ -31,6 +31,11 @@ d.prototype = {
     console.log(this._name);
   }
 };
+
+(function () {
+  console.log("iife");
+})();
+
 export { a, b, c, d };`;
 
 pluginTester({
