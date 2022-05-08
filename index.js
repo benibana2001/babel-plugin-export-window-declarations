@@ -14,13 +14,18 @@ const plugin = ({ types: t, template }) => {
   const visitor = {
     VariableDeclarator: (nodePath, state) => {
       if (!t.isIdentifier(nodePath.node.id)) return;
-      state.members.push(nodePath.node.id.name);
+
+      const grandParentPathType = nodePath.parentPath.parentPath.node.type;
+      if (grandParentPathType === "Program") {
+        state.members.push(nodePath.node.id.name);
+      }
     },
     FunctionDeclaration: (nodePath, state) => {
-      if (!t.isIdentifier(nodePath.node.id)) {
-        return;
-      }
-      state.members.push(nodePath.node.id.name);
+      if (!t.isIdentifier(nodePath.node.id)) return;
+
+      const parentPathType = nodePath.parentPath.node.type;
+      if (parentPathType === "Program")
+        state.members.push(nodePath.node.id.name);
     },
     Program: {
       exit: (nodePath, state) => {

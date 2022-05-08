@@ -4,6 +4,9 @@ function a() {
 
 function b() {
   console.log("b");
+  function bb() {
+    console.log("bb");
+  }
 }
 
 var c = function () {

@@ -2,38 +2,20 @@ const fs = require("fs");
 const plugin = require(`${__dirname}/../index`);
 const pluginTester = require("babel-plugin-tester").default;
 
-// test declarations.js
-let code = fs.readFileSync(`${__dirname}/js/declarations.js`, {
+let code = fs.readFileSync(`${__dirname}/js/functions.js`, {
   encoding: "utf8",
 });
-let expected = `
-var d1 = 100;
-var d2 = {
-  hoge: "hoge",
-};
-var d3 = [0, 1, { piyo: "piyo" }];
-export { d1, d2, d3 };`;
-
-pluginTester({
-  plugin,
-  formatResult: (r) => r,
-  tests: [
-    {
-      code,
-      output: expected,
-    },
-  ],
-});
-
-// test functions.js
-code = fs.readFileSync(`${__dirname}/js/functions.js`, { encoding: "utf8" });
-expected = `
+let output = `
 function a() {
   console.log("a");
 }
 
 function b() {
   console.log("b");
+
+  function bb() {
+    console.log("bb");
+  }
 }
 
 var c = function () {
@@ -52,12 +34,12 @@ d.prototype = {
 export { a, b, c, d };`;
 
 pluginTester({
-  plugin,
   formatResult: (r) => r,
+  plugin,
   tests: [
     {
       code,
-      output: expected,
+      output,
     },
   ],
 });
