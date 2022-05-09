@@ -9,9 +9,13 @@ const exportLiteral = (array) => {
 
 const plugin = ({ types: t, template }) => {
   const pre = function () {
+    this.doInsert = true;
     this.members = [];
   };
   const visitor = {
+    ExportNamedDeclaration: (nodePath, state) => {
+      state.doInsert = false;
+    },
     VariableDeclarator: (nodePath, state) => {
       if (!t.isIdentifier(nodePath.node.id)) return;
 
@@ -29,6 +33,7 @@ const plugin = ({ types: t, template }) => {
     },
     Program: {
       exit: (nodePath, state) => {
+        if (!state.doInsert) return;
         const newAst = template(exportLiteral(state.members))();
         nodePath.pushContainer("body", newAst);
       },
